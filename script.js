@@ -1,21 +1,19 @@
-let money = 10000;
-let income = 'фриланс, реклама';
-let addExpenses = 'Коммуналка, интернет, еда, транспорт';
-let deposit = true;
-let mission = 500000;
-let period = 6;
-let budgetDay = money / 30;
+let num = 266219;
+let stringArray = num.toString().split('');
+let numArray = stringArray.map(Number);
+let production = 1;
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
+numArray.forEach(function(numArray) {
+  production *= numArray;
+});
 
-console.log(addExpenses.length);
+console.log(production);
 
-console.log('Период равен ' + period + ' месяцев. ' + 'Цель заработать ' + mission + ' гривен' );
+let pow = production ** 3; 
 
-console.log(addExpenses.toLowerCase());
-console.log(addExpenses.split(', '));
+console.log(pow);
 
-console.log(budgetDay);
+pow = pow.toString();
+
+console.log(pow.substr(0, 2));
 
