@@ -1,10 +1,21 @@
-var money = 1;
-var income = 2;
-var addExpenses = 3;
-var deposit = 4;
-var mission = 5;
-var period = 6;
+let money = 10000;
+let income = 'фриланс, реклама';
+let addExpenses = 'Коммуналка, интернет, еда, транспорт';
+let deposit = true;
+let mission = 500000;
+let period = 6;
+let budgetDay = money / 30;
 
-alert('Урок №1');
+console.log(typeof money);
+console.log(typeof income);
+console.log(typeof deposit);
 
-console.log('Урок №1');
+console.log(addExpenses.length);
+
+console.log('Период равен ' + period + ' месяцев. ' + 'Цель заработать ' + mission + ' гривен' );
+
+console.log(addExpenses.toLowerCase());
+console.log(addExpenses.split(', '));
+
+console.log(budgetDay);
+
