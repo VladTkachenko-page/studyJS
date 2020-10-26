@@ -43,7 +43,7 @@ function numberDate() {
   };
    let date2 = now.toLocaleString("ru", options);
 
-   numberData.textContent =date2;
+   numberData.textContent = date2;
 }
 
 setInterval(function() {
