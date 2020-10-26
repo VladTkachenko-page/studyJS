@@ -2,15 +2,6 @@
 
 let now = new Date();
 
-let options = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  weekday: 'long',
-};
- let date = now.toLocaleString("ru", options);
-
-
 function textDate() {
   let options = {
     year: 'numeric',
