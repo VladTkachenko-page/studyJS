@@ -38,7 +38,7 @@ function numberDate() {
 }
 
 setInterval(function() {
-  now = new Date()
+  now = new Date();
   textDate();
   numberDate();
 }, 1000);
