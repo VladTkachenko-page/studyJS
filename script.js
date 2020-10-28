@@ -1,44 +1,36 @@
-'use strict';
+'use strict'
 
-let now = new Date();
+const books = document.querySelectorAll('.books'),
+      book = document.querySelectorAll('.book');
 
-function textDate() {
-  let options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
-   let textData = document.querySelector('.textData');
-   let date = now.toLocaleString("ru", options);
+books[0].append(book[2]);
+book[4].after(book[3]);
+books[0].prepend(book[1]);
 
-  if (now.getHours() === 1 || now.getHours() === 21) {
-    textData.textContent = 'Cегодня '+ (date + ' ' + now.getHours() + ' час ' + now.getMinutes() + ' минут ' + now.getSeconds() + ' секунды' );
-  } else if (now.getHours() === 2 || now.getHours() === 3 || now.getHours() === 4 || now.getHours() === 22 || now.getHours() === 23) {
-    textData.textContent = 'Cегодня '+ (date + ' ' + now.getHours() + ' часa ' + now.getMinutes() + ' минут ' + now.getSeconds() + ' секунды' );
-  } else {
-    textData.textContent = 'Cегодня '+ (date + ' ' + now.getHours() + ' часов ' + now.getMinutes() + ' минут ' + now.getSeconds() + ' секунды' );
-  }
-}
+document.body.style.backgroundImage = "url('/image/you-dont-know-js.jpg')";
 
-let numberData = document.querySelector('.numberData');
+const headerBook = document.querySelectorAll('a');
 
-function numberDate() {
-  let options = {
-    year: '2-digit',
-    month: 'numeric',
-    day: 'numeric',
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric"
-  };
-   let date2 = now.toLocaleString("ru", options);
+headerBook[2].textContent = 'Книга 3. this и Прототипы Объектов';
 
-   numberData.textContent = date2;
-}
+const adv = document.querySelector('.adv');
 
-setInterval(function() {
-  now = new Date();
-  textDate();
-  numberDate();
-}, 1000);
+adv.remove();
+
+const listBook2 = book[0].querySelectorAll('li');
+
+listBook2[3].after(listBook2[6]);
+listBook2[6].after(listBook2[8]);
+listBook2[9].after(listBook2[2]);
+
+const listBook5 = book[5].querySelectorAll('li');
+
+listBook5[1].after(listBook5[9]);
+listBook5[4].after(listBook5[2]);
+listBook5[7].after(listBook5[5]);
+
+const listBook6 = book[2].querySelectorAll('li'),
+      newLi = document.createElement('li');
+      
+      newLi.textContent = 'Глава 8: За пределами ES6';
+      listBook6[8].after(newLi);
