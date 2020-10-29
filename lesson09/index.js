@@ -1,42 +1,28 @@
 'use strict'
 
-const buttonStart = document.getElementById('start');
+const buttonStart = document.getElementById('start'),
 
-console.log(buttonStart);
+      buttonPlus1 = document.getElementsByTagName('button')[0],
+      buttonPlus2 = document.getElementsByTagName('button')[1],
 
-const classData = document.querySelector('.data');
-const buttonPlus1 = classData.querySelector('button');
-const buttonPlus2 = classData.querySelectorAll('button')[1];
+      checkbox = document.querySelector('#deposit-check'),
 
-console.log(buttonPlus1, buttonPlus2);
+      incomeItem = document.querySelectorAll('.additional_income-item')[0],
+      incomeItem2 = document.querySelectorAll('.additional_income-item')[1],
 
-const checkbox = document.querySelector('#deposit-check');
+      budgetMonth = document.getElementsByClassName('budget_month-value'),
+      budgetDay = document.getElementsByClassName('budget_day-value'),
+      expensesMonth = document.getElementsByClassName('expenses_month-value'),
+      additionalIncome = document.getElementsByClassName('additional_income-value'),
+      additionalExpenses = document.getElementsByClassName('additional_expenses-value'),
+      incomePeriod = document.getElementsByClassName('income_period-value'),
+      targetMonth = document.getElementsByClassName('target_month-value'),
 
-console.log(checkbox);
-
-const incomeItem = document.querySelectorAll('.additional_income-item')[0];
-const incomeItem2 = document.querySelectorAll('.additional_income-item')[1];
-
-console.log(incomeItem, incomeItem2);
-
-const budgetMonth = document.getElementsByClassName('result-total')[0];
-const budgetDay = document.getElementsByClassName('result-total')[1];
-const expensesMonth = document.getElementsByClassName('result-total')[2];
-const additionalIncome = document.getElementsByClassName('result-total')[3];
-const additionalExpenses = document.getElementsByClassName('result-total')[4];
-const incomePeriod = document.getElementsByClassName('result-total')[5];
-const targetMonth = document.getElementsByClassName('result-total')[6];
-
-console.log(budgetMonth, budgetDay, expensesMonth, additionalIncome, additionalExpenses, incomePeriod, targetMonth);
-
-
-const salaryAmount = classData.querySelector('.salary-amount');
-const incomeTitle = classData.querySelector('.income-title');
-const incomeAmount = classData.querySelector('.income-amount');
-const expensesTitle = classData.querySelector('.expenses-title');
-const expensesAmount = classData.querySelector('.expenses-amount');
-const additionalExpensesItem = classData.querySelector('.additional_expenses-item');
-const targetAmount = classData.querySelector('.target-amount');
-const range = classData.querySelector('.period-select');
-
-console.log(salaryAmount, incomeTitle, incomeAmount, expensesTitle, expensesAmount, additionalExpensesItem, targetAmount, range);
+      salaryAmount = document.querySelector('.salary-amount'),
+      incomeTitle = document.querySelector('.income-title'),
+      incomeAmount = document.querySelector('.income-amount'),
+      expensesTitle = document.querySelector('.expenses-title'),
+      expensesAmount = document.querySelector('.expenses-amount'),
+      additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+      targetAmount = document.querySelector('.target-amount'),
+      range = document.querySelector('.period-select');
