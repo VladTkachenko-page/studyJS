@@ -9,16 +9,43 @@ function textDate() {
     day: 'numeric',
     weekday: 'long',
   };
-   let textData = document.querySelector('.textData');
-   let date = now.toLocaleString("ru", options);
+   const textData = document.querySelector('.textData');
+   const date = now.toLocaleString("ru", options);
 
-  if (now.getHours() === 1 || now.getHours() === 21) {
-    textData.textContent = 'Cегодня '+ (date + ' ' + now.getHours() + ' час ' + now.getMinutes() + ' минут ' + now.getSeconds() + ' секунды' );
-  } else if (now.getHours() === 2 || now.getHours() === 3 || now.getHours() === 4 || now.getHours() === 22 || now.getHours() === 23) {
-    textData.textContent = 'Cегодня '+ (date + ' ' + now.getHours() + ' часa ' + now.getMinutes() + ' минут ' + now.getSeconds() + ' секунды' );
-  } else {
-    textData.textContent = 'Cегодня '+ (date + ' ' + now.getHours() + ' часов ' + now.getMinutes() + ' минут ' + now.getSeconds() + ' секунды' );
-  }
+   function hourEnd() {
+     if (now.getHours() === 1) {
+        return '0' + now.getHours() + ' час ';
+     } else if (now.getHours() === 21) {
+        return now.getHours() + ' час ';
+     } 
+     else if (now.getHours() === 2 || now.getHours() === 3 || now.getHours() === 4) {
+        return '0' + now.getHours() + ' часа ';
+     } else if (now.getHours() === 22 || now.getHours() === 23) {
+        return now.getHours() + ' часа ';
+     } else if (now.getHours() < 10) {
+      return '0' + now.getHours() + ' часов ';
+    } else {
+        return now.getHours() + ' часов ';
+     }
+   }
+
+   function addZeroMinutes() {
+    if (now.getMinutes() < 10) {
+      return '0' + now.getMinutes() + ' минут ';
+    } else {
+      return now.getMinutes() + ' минут ';
+    }
+  };
+  function addZeroSeconds() {
+    if (now.getSeconds() < 10) {
+      return '0' + now.getSeconds() + ' секунды';
+    } else {
+      return now.getSeconds() + ' секунды';
+    }
+  };
+
+   textData.textContent = 'Cегодня '+ (date + ' ' + hourEnd() + addZeroMinutes() + addZeroSeconds() );
+
 }
 
 let numberData = document.querySelector('.numberData');
