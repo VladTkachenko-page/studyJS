@@ -60,7 +60,6 @@ let appData = {
     appData.getAddIncome();
     appData.getBudget();
     appData.getTargetMonth();
-    appData.calcPeriod();
     appData.showResult();
   },
   showResult: function() {
