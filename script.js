@@ -95,7 +95,6 @@ let appData = {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
     cloneIncomeItem.querySelectorAll('input')[0].value = '';
     cloneIncomeItem.querySelectorAll('input')[1].value = '';
-    console.log('cloneIncomeItem: ', cloneIncomeItem);
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
     incomeItems = document.querySelectorAll('.income-items');
     if (incomeItems.length === 3) {
