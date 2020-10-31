@@ -70,7 +70,7 @@ let appData = {
     additionalIncome.value = appData.addIncome.join(', ');
     targetMonth.value = appData.getTargetMonth();
     incomePeriod.value = appData.calcPeriod();
-    periodSelect.onchange = function() {
+    periodSelect.oninput = function() {
       periodAmount.textContent = periodSelect.value;
       incomePeriod.value = appData.calcPeriod();
     };
