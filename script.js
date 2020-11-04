@@ -65,7 +65,6 @@ let appData = {
     this.getTargetMonth();
     this.calcPeriod();
     this.showResult();
-    console.log(this.accumulationPeriod);
   },
   reset: function () {
     inputAll = document.querySelectorAll('input');
