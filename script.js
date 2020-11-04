@@ -80,6 +80,18 @@ let appData = {
     this.expenses = {};
     this.income = {};
     appData.accumulationPeriod = 0;
+    incomeItems = document.querySelectorAll('.income-items');
+    if (incomeItems.length > 1) {
+      incomeItems[1].remove();
+      incomeItems[2].remove();
+      incomePlus.style.display = 'block';
+    }
+    expensesItems = document.querySelectorAll('.expenses-items');
+    if (expensesItems.length > 1) {
+      expensesItems[1].remove();
+      expensesItems[2].remove();
+      expensesPlus.style.display = 'block';
+    }
   },
   showResult: function() {
     budgetMonth.value = this.budgetMonth;
