@@ -81,13 +81,17 @@ let appData = {
     this.income = {};
     appData.accumulationPeriod = 0;
     incomeItems = document.querySelectorAll('.income-items');
-    if (incomeItems.length > 1) {
+    if (incomeItems.length === 2) {
+      incomeItems[1].remove();
+    } else if (incomeItems.length === 3){
       incomeItems[1].remove();
       incomeItems[2].remove();
       incomePlus.style.display = 'block';
     }
     expensesItems = document.querySelectorAll('.expenses-items');
-    if (expensesItems.length > 1) {
+    if (expensesItems.length === 2) {
+      expensesItems[1].remove();
+    } else if (expensesItems.length === 3) {
       expensesItems[1].remove();
       expensesItems[2].remove();
       expensesPlus.style.display = 'block';
