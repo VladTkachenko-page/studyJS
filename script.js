@@ -44,7 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let topBlock = 0,
     left = 0;
-window.addEventListener('keydown', function(event) {
+      
+    document.onkeydown = callback;
+
+function callback(event) {
   if (event.code === 'ArrowUp' && topBlock > 0) {
     topBlock -= 10;
     newBlock.style.top = topBlock + 'px';
@@ -60,5 +63,5 @@ window.addEventListener('keydown', function(event) {
     console.log('left: ', left);
     newBlock.style.left = left + 'px';
   }
-});
+};
   
