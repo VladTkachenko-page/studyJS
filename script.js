@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let topBlock = 0,
     left = 0;
-      
+
     document.onkeydown = callback;
 
 function callback(event) {
@@ -56,11 +56,9 @@ function callback(event) {
     newBlock.style.top = topBlock + 'px';
   } else if (event.code === 'ArrowRight') {
     left = left + 10;
-    console.log('left: ', left);
     newBlock.style.left = left + 'px';
   } else if (event.code === 'ArrowLeft' && left > 0) {
     left -= 10;
-    console.log('left: ', left);
     newBlock.style.left = left + 'px';
   }
 };
