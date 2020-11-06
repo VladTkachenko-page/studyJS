@@ -31,9 +31,9 @@ DomElement.prototype.cssText = function(height, width, bg, fontSize) {
 
 let block = new DomElement();
 
-  block = new DomElement('#block', '100px', '500px', '#aeaeae', '20px');
-  block.addBlock(block.selector);
-  block.cssText(block.height, block.width, block.bg, block.fontSize);
+  // block = new DomElement('#block', '100px', '500px', '#aeaeae', '20px');
+  // block.addBlock(block.selector);
+  // block.cssText(block.height, block.width, block.bg, block.fontSize);
 
 document.addEventListener("DOMContentLoaded", function() {
   block = new DomElement('.block', '100px', '100px', '#000000', '20px');
@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let topBlock = 0,
     left = 0;
-
     document.onkeydown = callback;
 
 function callback(event) {
