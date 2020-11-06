@@ -125,14 +125,21 @@ AppData.prototype.showResult = function() {
 };
 
 AppData.prototype.addExpensesBlock = function() {
-  let cloneExpensesItem = expensesItems[0].cloneNode(true);
-  cloneExpensesItem.querySelectorAll('input')[0].value = '';
-  cloneExpensesItem.querySelectorAll('input')[1].value = '';
+  let cloneExpensesItem = expensesItems[0].cloneNode(true),
+      cloneExpensesItems = cloneExpensesItem.querySelectorAll('input');
+  cloneExpensesItems[0].value = '';
+  cloneExpensesItems[1].value = '';
   expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
   expensesItems = document.querySelectorAll('.expenses-items');
   if (expensesItems.length === 3) {
     expensesPlus.style.display = 'none';
   }
+  cloneExpensesItems[0].addEventListener('input', function() {
+    cloneExpensesItems[0].value = cloneExpensesItems[0].value.replace(/[^а-яА-Я,;. ]/,'');
+  });
+  cloneExpensesItems[1].addEventListener('input', function() {
+    cloneExpensesItems[1].value = cloneExpensesItems[1].value.replace(/[^0-9]/,'');
+  });
 };
 
 AppData.prototype.getExpenses = function() {
@@ -147,14 +154,22 @@ AppData.prototype.getExpenses = function() {
 };
 
 AppData.prototype.addIncomeBlock = function() {
-  let cloneIncomeItem = incomeItems[0].cloneNode(true);
-  cloneIncomeItem.querySelectorAll('input')[0].value = '';
-  cloneIncomeItem.querySelectorAll('input')[1].value = '';
+  let cloneIncomeItem = incomeItems[0].cloneNode(true),
+      cloneIncomeItems = cloneIncomeItem.querySelectorAll('input');
+  cloneIncomeItems[0].value = '';
+  cloneIncomeItems[1].value = '';
   incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
   incomeItems = document.querySelectorAll('.income-items');
   if (incomeItems.length === 3) {
     incomePlus.style.display = 'none';
   }
+  cloneIncomeItems[0].addEventListener('input', function() {
+    cloneIncomeItems[0].value = cloneIncomeItems[0].value.replace(/[^а-яА-Я,;. ]/,'');
+  });
+  cloneIncomeItems[1].addEventListener('input', function() {
+    cloneIncomeItems[1].value = cloneIncomeItems[1].value.replace(/[^0-9]/,'');
+  });
+    
 };
 
 AppData.prototype.getIncome = function() {
@@ -256,9 +271,7 @@ AppData.prototype.eventsListeners = function () {
     };
   };
   expensesPlus.addEventListener('click', this.addExpensesBlock);
-  expensesPlus.addEventListener('click', checkInput);
   incomePlus.addEventListener('click', this.addIncomeBlock);
-  incomePlus.addEventListener('click', checkInput);
   checkInput();
 };
 
