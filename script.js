@@ -6,7 +6,7 @@ const buttonStart = document.getElementById('start'),
       incomePlus = document.getElementsByTagName('button')[0],
       expensesPlus = document.getElementsByTagName('button')[1],
 
-      checkbox = document.querySelector('#deposit-check'),
+      depositCheck = document.querySelector('#deposit-check'),
 
       incomeItem = document.querySelectorAll('.additional_income-item'),
 
@@ -16,7 +16,10 @@ const buttonStart = document.getElementById('start'),
       additionalIncome = document.getElementsByClassName('additional_income-value')[0],
       additionalExpenses = document.getElementsByClassName('additional_expenses-value')[0],
       incomePeriod = document.getElementsByClassName('income_period-value')[0],
-      targetMonth = document.getElementsByClassName('target_month-value')[0];
+      targetMonth = document.getElementsByClassName('target_month-value')[0],
+      depositBank = document.querySelector('.deposit-bank'),
+      depositAmount = document.querySelector('.deposit-amount'),
+      depositPercent = document.querySelector('.deposit-percent');
 
 let   salaryAmount = document.querySelector('.salary-amount'),
       incomeTitle = document.querySelectorAll('.income-title')[1],
@@ -61,6 +64,7 @@ class AppData  {
     this.getExpInc();
     this.getExpensesMonth();
     this.getAddExpInc();
+    this.getInfoDeposit();
     this.getBudget();
     this.getTargetMonth();
     this.calcPeriod();
@@ -192,7 +196,8 @@ class AppData  {
   };
 
   getBudget() {
-    this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
+    const monthDeposit = this.moneyDeposit * (this.percentDeposit / 100);
+    this.budgetMonth = this.budget + this.incomeMonth + monthDeposit - this.expensesMonth;
     this.budgetDay = this.budgetMonth / 30;
   };
 
@@ -213,26 +218,58 @@ class AppData  {
   };
 
   getInfoDeposit(){
-    if(this.deposit === true){
-      do {
-        this.percentDeposit = prompt('Какой годовой процент?', 5);
-      } while (!isNumber(this.percentDeposit));
-      do {
-        this.moneyDeposit = prompt('Какая сума заложена?', 20000);
-      } while (!isNumber(this.moneyDeposit));
+    if (this.deposit === true){
+      this.percentDeposit = depositPercent.value;
+      this.moneyDeposit = depositAmount.value;
     }
   };
 
   calcPeriod(){
     appData.accumulationPeriod = this.budgetMonth * periodSelect.value;
   };
+  changePercent(){
+    const valueSelect = this.value;
+    if (valueSelect === 'other') {
+      depositPercent.style.display = 'inline-block';
+      this.percentDeposit = depositPercent.value;
+    } else {
+      depositPercent.style.display = 'none';
+      depositPercent.value = valueSelect;
+    }
+    depositPercent.addEventListener('input', () => {
+      if (depositPercent.value < 1 || depositPercent.value > 100 ){
+        alert('Введите корректное значение в поле проценты');
+        depositPercent.value = '';
+        buttonStart.disabled = true; 
+      } else {
+        buttonStart.disabled = false; 
+      }
+    });
+  };
+  depositHandler() {
+    if (depositCheck.checked) {
+      depositBank.style.display = 'inline-block';
+      depositAmount.style.display = 'inline-block';
+      this.deposit = true;
+      depositBank.addEventListener('change', this.changePercent);
+    } else {
+      depositBank.style.display = 'none';
+      depositAmount.style.display = 'none';
+      depositBank.value = '';
+      depositAmount.value = '';
+      this.deposit = false;
+      depositBank.removeEventListener('change', this.changePercent);
 
+    }
+  };
   eventsListeners () {
     const start = appData.start.bind(appData);
     const reset = appData.reset.bind(appData);
 
     buttonStart.addEventListener('click', start);
     buttonCancel.addEventListener('click', reset);
+
+    depositCheck.addEventListener('change', this.depositHandler.bind(this));
 
     const checkInput = () => {
       inputAll = document.querySelectorAll('input');
@@ -241,7 +278,7 @@ class AppData  {
           inputAll[i].addEventListener('input', () => {
             inputAll[i].value = inputAll[i].value.replace(/[^а-яА-Я,;. ]/,'');
           });
-        } else if (inputAll[i].placeholder === 'Сумма') {
+        } else if (inputAll[i].placeholder === 'Сумма' || inputAll[i].placeholder === 'Процент') {
           inputAll[i].addEventListener('input', () => {
             inputAll[i].value = inputAll[i].value.replace(/[^0-9]/,'');
           });
