@@ -1,25 +1,40 @@
 'use strict';
   
-  let input = document.querySelector('input'),
-        text = document.querySelector('.text');
+const box = document.querySelector('.box'),
+      start = document.querySelector('#start'),
+      reset = document.querySelector('#reset');
 
-        function debounce(func, wait, immediate) {
-          var timeout;
-          return function() {
-            var context = this, args = arguments;
-            var later = function() {
-              timeout = null;
-              if (!immediate) func.apply(context, args);
-            };
-            var callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-          };
-        };
-        
-        function addText() {
-          text.textContent = input.value;
-        };
+let animate = false,
+    count = 0;
 
-        input.addEventListener('input', debounce(addText, 300));
+  box.style.cssText = `width: 100px;
+  background-color: black;
+  height: 100px;
+  margin-bottom: 20px;
+  position: relative;` 
+  let moveInterval,
+      moveBlock = function () {
+        moveInterval = requestAnimationFrame(moveBlock);
+        count++;
+        if(count < 500) {
+          box.style.left = count + 'px';
+        } else {
+          cancelAnimationFrame(moveInterval);
+        }
+      }
+
+  start.addEventListener('click', function () {  
+    if(!animate) {
+      moveInterval = requestAnimationFrame(moveBlock);
+      animate = true;
+    } else {
+      animate = false;
+      cancelAnimationFrame(moveInterval);
+    }
+  });
+  reset.addEventListener('click', function () { 
+      cancelAnimationFrame(moveInterval);
+      box.style.left = 0;
+      count = 0;
+      animate = false;
+  });
