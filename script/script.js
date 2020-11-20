@@ -78,28 +78,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-
-
-        menuItems.forEach(elem => {
-            const href = elem.querySelector('a');
-            href.addEventListener('click', e => {
-                e.preventDefault();
-
-                const link = href.getAttribute('href').substring(1);
-
-                const scrollTarget = document.getElementById(link),
-                    elementPosition = scrollTarget.getBoundingClientRect().top;
-
-                window.scrollBy({
-                    top: elementPosition,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        btnScroll.addEventListener('click', e => {
-            e.preventDefault();
-
-            const link = btnScroll.getAttribute('href').substring(1);
+        const smoothScroll = (item) => {
+            const link = item.getAttribute('href').substring(1);
 
             const scrollTarget = document.getElementById(link),
                 elementPosition = scrollTarget.getBoundingClientRect().top;
@@ -108,6 +88,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 top: elementPosition,
                 behavior: 'smooth'
             });
+        }
+
+        menuItems.forEach(elem => {
+            const href = elem.querySelector('a');
+            href.addEventListener('click', e => {
+                e.preventDefault();
+                smoothScroll(href);
+            });
+        });
+        btnScroll.addEventListener('click', e => {
+            e.preventDefault();
+            smoothScroll(btnScroll);
         });
 
     };
