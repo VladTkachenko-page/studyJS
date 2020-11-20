@@ -78,7 +78,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-        const smoothScroll = (item) => {
+        const smoothScroll = item => {
             const link = item.getAttribute('href').substring(1);
 
             const scrollTarget = document.getElementById(link),
