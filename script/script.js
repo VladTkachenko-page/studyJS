@@ -60,7 +60,6 @@ window.addEventListener('DOMContentLoaded', () => {
             let target = event.target,
                 targetMenubtn = event.target,
                 targetMenu = event.target;
-            console.log(target);
             if (target.classList.contains('close-btn')) {
                 handlerMenu();
             } else {
