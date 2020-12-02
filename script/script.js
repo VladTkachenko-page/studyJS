@@ -297,7 +297,7 @@ window.addEventListener('DOMContentLoaded', () => {
             img.addEventListener('mouseenter', e => {
                 event.target.src = event.target.dataset.img;
             });
-            
+
             img.addEventListener('mouseleave', e => {
                 event.target.src = src;
             });
@@ -322,8 +322,8 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         const countSum = () => {
             let total = 0,
-            countValue = 1,
-            dayValue = 1;
+                countValue = 1,
+                dayValue = 1;
             const typeValue = calcType.options[calcType.selectedIndex].value,
                 squareValue = +calcSquare.value;
 
@@ -339,11 +339,11 @@ window.addEventListener('DOMContentLoaded', () => {
             if (typeValue && squareValue) {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
-            
+
             let step = 100;
             const updateTotal = () => {
                 if (step < total) {
-                    step = step + (total / 200);
+                    step += (total / 200);
                     totalValue.innerHTML = Math.floor(step);
                     setTimeout(updateTotal, 5);
                 } else {
@@ -353,7 +353,7 @@ window.addEventListener('DOMContentLoaded', () => {
             updateTotal();
         };
 
-        calcInputWrap.addEventListener('change', (event) => {
+        calcInputWrap.addEventListener('change', event => {
             const target = event.target;
 
             if (target.matches('.calc-type') || target.matches('.calc-square') || target.matches('.calc-count') || target.matches('.calc-day')) {

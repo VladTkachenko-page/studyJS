@@ -70,13 +70,13 @@
 		<div class="main-form-input container">
 			<div class="row">
 				<div class="col-12 col-lg-4">
-					<input type="text" class="form-name" id="form1-name" name="user_name" placeholder="Ваше имя" required>
+					<input type="text" class="form-name" id="form1-name" name="user_name" placeholder="Ваше имя" >
 				</div>
 				<div class="col-12 col-lg-4">
 					<input type="email" class="form-email" id="form1-email" name="user_email" placeholder="E-mail">
 				</div>
 				<div class="col-12 col-lg-4">
-					<input type="tel" class="form-phone" id="form1-phone" name="user_phone" placeholder="Номер телефона" required>
+					<input type="tel" class="form-phone" id="form1-phone" name="user_phone" placeholder="Номер телефона" >
 				</div>
 			</div>
 		</div>
@@ -411,5 +411,71 @@
 	</div>
 </div>
 <script src="script/script.js"></script>
+<script src="script/validator.js"></script>
+<script>
+	const validForm1 = new Validator({
+		selector: '#form1',
+		pattern: { name: /[а-яё]/i},
+		method: {
+			'form1-name': [
+				['notEmpty'],
+				['pattern', 'name']
+			],
+			'form1-email': [
+				['notEmpty'],
+				['pattern', 'email']
+			],
+			'form1-phone': [
+				['notEmpty'],
+				['pattern', 'phone']
+			],
+		}
+	});
+	const validForm2 = new Validator({
+		selector: '#form2',
+		pattern: { name: /[а-яё]/i},
+		method: {
+			'form2-name': [
+				['notEmpty'],
+				['pattern', 'name']
+			],
+			'form2-email': [
+				['notEmpty'],
+				['pattern', 'email']
+			],
+			'form2-phone': [
+				['notEmpty'],
+				['pattern', 'phone']
+			],
+			'form2-message': [
+				['notEmpty'],
+				['pattern', 'name']
+			],
+		}
+
+	});
+	const validForm3 = new Validator({
+		selector: '#form3',
+		pattern: { name: /[а-яё]/i},
+		method: {
+			'form3-name': [
+				['notEmpty'],
+				['pattern', 'name']
+			],
+			'form3-email': [
+				['notEmpty'],
+				['pattern', 'email']
+			],
+			'form3-phone': [
+				['notEmpty'],
+				['pattern', 'phone']
+			],
+		}
+	});
+
+	validForm1.init();
+	validForm2.init();
+	validForm3.init();
+</script>
 </body>
 </html>
