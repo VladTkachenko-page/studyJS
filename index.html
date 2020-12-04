@@ -433,7 +433,7 @@
 	});
 	const validForm2 = new Validator({
 		selector: '#form2',
-		pattern: { name: /[а-яё]/i},
+		pattern: { name: /[а-яё ]/i},
 		method: {
 			'form2-name': [
 				['notEmpty'],
@@ -456,7 +456,7 @@
 	});
 	const validForm3 = new Validator({
 		selector: '#form3',
-		pattern: { name: /[а-яё]/i},
+		pattern: { name: /[а-яё ]/i},
 		method: {
 			'form3-name': [
 				['notEmpty'],
