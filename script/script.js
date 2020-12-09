@@ -391,6 +391,18 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        const successAnimate = form => {
+            statusMessage.classList.remove('sk-plane', 'sk-center');
+            statusMessage.textContent = successMessage;
+            form.forEach(item => {
+                item.value = '';
+            });
+        };
+        const errorPost = error => {
+            statusMessage.textContent = errorMessage;
+            console.error(error);
+        };
+
         form1.addEventListener('submit', event => {
             event.preventDefault();
             form1.appendChild(statusMessage);
@@ -400,16 +412,9 @@ window.addEventListener('DOMContentLoaded', () => {
             formData.forEach((key, val) => {
                 body[key] = val;
             });
-            postData(body, () => {
-                statusMessage.classList.remove('sk-plane', 'sk-center');
-                statusMessage.textContent = successMessage;
-                inputForm1.forEach(item => {
-                    item.value = '';
-                });
-            }, error => {
-                statusMessage.textContent = errorMessage;
-                console.error(error);
-            });
+            postData(body)
+                .then(successAnimate(inputForm1))
+                .catch(errorPost);
         });
         form2.addEventListener('submit', event => {
             event.preventDefault();
@@ -420,55 +425,43 @@ window.addEventListener('DOMContentLoaded', () => {
             formData.forEach((key, val) => {
                 body[key] = val;
             });
-            postData(body, () => {
-                statusMessage.classList.remove('sk-plane', 'sk-center');
-                statusMessage.textContent = successMessage;
-                inputForm2.forEach(item => {
-                    item.value = '';
-                });
-            }, error => {
-                statusMessage.textContent = errorMessage;
-                console.error(error);
-            });
+            postData(body)
+                .then(successAnimate(inputForm2))
+                .catch(errorPost);
         });
         form3.addEventListener('submit', event => {
             event.preventDefault();
             form3.appendChild(statusMessage);
             statusMessage.classList.add('sk-plane', 'sk-center');
-            statusMessage.textContent = ''; 
+            statusMessage.textContent = '';
             const formData = new FormData(form3);
             const body = {};
             formData.forEach((key, val) => {
                 body[key] = val;
             });
-            postData(body, () => {
-                statusMessage.classList.remove('sk-plane', 'sk-center');
-                statusMessage.textContent = successMessage;
-                inputForm3.forEach(item => {
-                    item.value = '';
-                });
-            }, error => {
-                statusMessage.textContent = errorMessage;
-                console.error(error);
-            });
+            postData(body)
+                .then(successAnimate(inputForm3))
+                .catch(errorPost);
         });
-        const postData = (body, outputData, errorData) => {
+
+
+        const postData = body => new Promise((resolve, reject) => {
             const request = new XMLHttpRequest();
             request.addEventListener('readystatechange', () => {
                 if (request.readyState !== 4) {
                     return;
                 }
                 if (request.status === 200) {
-                    outputData();
+                    resolve();
                 } else {
-                    errorData(request.status);
+                    reject(request.status);
                 }
             });
 
             request.open('POST', './server.php');
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify(body));
-        };
+        });
     };
     sendForm();
 });
