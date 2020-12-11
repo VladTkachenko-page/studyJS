@@ -406,6 +406,7 @@ window.addEventListener('DOMContentLoaded', () => {
         form1.addEventListener('submit', event => {
             event.preventDefault();
             form1.appendChild(statusMessage);
+            statusMessage.textContent = '';
             statusMessage.classList.add('sk-plane', 'sk-center');
             const formData = new FormData(form1);
             const body = {};
@@ -424,6 +425,7 @@ window.addEventListener('DOMContentLoaded', () => {
         form2.addEventListener('submit', event => {
             event.preventDefault();
             form2.appendChild(statusMessage);
+            statusMessage.textContent = '';
             statusMessage.classList.add('sk-plane', 'sk-center');
             const formData = new FormData(form2);
             const body = {};
@@ -442,8 +444,8 @@ window.addEventListener('DOMContentLoaded', () => {
         form3.addEventListener('submit', event => {
             event.preventDefault();
             form3.appendChild(statusMessage);
-            statusMessage.classList.add('sk-plane', 'sk-center');
             statusMessage.textContent = '';
+            statusMessage.classList.add('sk-plane', 'sk-center');
             const formData = new FormData(form3);
             const body = {};
             formData.forEach((key, val) => {
@@ -458,7 +460,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch(errorPost);
         });
-        
+
         const postData = body => fetch('./server.php', {
             method: 'POST',
             headers: {
