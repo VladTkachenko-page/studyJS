@@ -82,9 +82,12 @@ class Validator {
             border: 2px solid red !important
           }
           .validator-error {
-            font-size: 12px;
-            font-family: sans-serif;
-            color: red;
+              font-size: 12px;
+              font-family: sans-serif;
+              color: red;
+            }
+          .main-form .validator-error {
+              margin-top: -25px;
           }
         `;
         document.head.appendChild(style);

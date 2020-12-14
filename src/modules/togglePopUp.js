@@ -9,10 +9,10 @@ const togglePopUp = () => {
         width = window.innerWidth,
         moveBlock = function() {
             moveInterval = requestAnimationFrame(moveBlock);
-            count += 20;
+            count += 2;
             width = window.innerWidth;
-            if (count < (width - (popupContent.clientWidth / 2)) / 2 && width > 768) {
-                popupContent.style.left = count + 'px';
+            if (count <= 42) {
+                popupContent.style.left = count + '%';
             } else {
                 cancelAnimationFrame(moveInterval);
             }
