@@ -4,18 +4,15 @@ class Validator {
         this.pattern = pattern;
         this.method = method;
         this.elementsForm = [...this.form.elements].filter(item => item.tagName.toLowerCase() !== 'button' && item.type !== 'button');
+        this.buttonForm = this.form.querySelector('.form-btn');
         this.error = new Set();
     }
-
     init() {
         this.applyStyle();
         this.setPattern();
         this.elementsForm.forEach(elem => elem.addEventListener('change', this.chekIt.bind(this)));
         this.form.addEventListener('submit', e => {
             this.elementsForm.forEach(elem => this.chekIt({ target: elem }));
-            if (this.error.size) {
-                e.preventDefault();
-            }
         });
     }
 
@@ -49,6 +46,11 @@ class Validator {
         } else {
             this.showError(target);
             this.error.add(target);
+        }
+        if (this.error.size > 0) {
+            this.buttonForm.disabled = true;
+        } else {
+            this.buttonForm.disabled = false;
         }
     }
 
@@ -86,7 +88,7 @@ class Validator {
               font-family: sans-serif;
               color: red;
             }
-          .main-form .validator-error {
+          .main-form-input .validator-error {
               margin-top: -25px;
           }
         `;

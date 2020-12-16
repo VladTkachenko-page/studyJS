@@ -19,6 +19,9 @@ const sendForm = () => {
         } else if (inputAll[i].name === 'user_phone') {
             inputAll[i].addEventListener('input', () => {
                 inputAll[i].value = inputAll[i].value.replace(/[^0-9+]/, '');
+                if (inputAll[i].value.length > 12) {
+                    inputAll[i].value = inputAll[i].value.slice(0,12); 
+                }
             });
         }
     }
@@ -29,6 +32,11 @@ const sendForm = () => {
         form.forEach(item => {
             item.value = '';
         });
+        setTimeout(() => {
+            statusMessage.textContent = '';
+            let popup = document.querySelector('.popup');
+            popup.style.display = 'none';
+        }, 5000)
     };
     const errorPost = error => {
         statusMessage.textContent = errorMessage;
